@@ -3,11 +3,4 @@ from rrb3 import *
 rr = RRB3(9,6)
 
 
-rr.set_oc1(1)
-rr.set_oc2(1)
-
-time.sleep(15)
-
-rr.set_oc1(0)
-rr.set_oc2(0)
-
+rr.forward(5, 1)

@@ -1,4 +1,4 @@
-from rbb3 import *
+from rrb3 import *
 
 rr = RBB3(9,6)
 

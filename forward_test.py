@@ -4,3 +4,9 @@ rr = RRB3(9,6)
 
 
 rr.forward(5, 1)
+
+rr.left(5, 1)
+
+rr.right(5, 1)
+
+rr.reverse(5, 1)

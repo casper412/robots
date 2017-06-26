@@ -1,6 +1,6 @@
 from rrb3 import *
 
-rr = RBB3(9,6)
+rr = RRB3(9,6)
 
 
 rr.set_oc1(1)

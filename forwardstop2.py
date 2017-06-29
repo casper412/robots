@@ -11,6 +11,6 @@ while(range == None or range > 30):
 	sleep(0.05) # sleep for 50 milliseconds
 	range = rr.get_distance()
 	
-rr.set_motors(0, 0, 0, 0) 
+rr.set_motors(0, 0, 0, 0)
 print("Stop") 
 print("range: " + str(rr.get_distance()))

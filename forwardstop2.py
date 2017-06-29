@@ -13,4 +13,4 @@ while(range == None or range > 30):
 	
 rr.set_motors(0, 0, 0, 0)
 print("Stop") 
-print("range: " + str(rr.get_distance()))
+print("range: " + str(range))

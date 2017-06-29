@@ -4,9 +4,10 @@ from time import sleep
 rr = RRB3(9,6)
 
 print("Go")
-rr.set_motors(1, 0, 1, 0) # both motors to full speed
 range = rr.get_distance()
-while(range == None or range > 30):
+rr.set_motors(1, 0, 1, 0) # both motors to full speed
+
+while(range > 30):
 	print("range: " + str(range))
 	sleep(0.05) # sleep for 50 milliseconds
 	range = rr.get_distance()

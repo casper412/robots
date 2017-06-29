@@ -7,13 +7,14 @@ print("Go")
 
 try:
 	rr.set_motors(1, 0, 1, 0) # both motors to full speed
-
-	while(rr.get_distance() > 30):
-		print("range: " + str(rr.get_distance()))
-		sleep(0.5) # sleep for 50 milliseconds
+    range = rr.get_distance()
+	while(range > 30):
+		print("range: " + str(range))
+		
+		range = rr.get_distance()
 	
 	rr.set_motors(0, 0, 0, 0)
 	print("Stop") 
-	print("range: " + str(rr.get_distance()))
+	print("range: " + str(range))
 finally:
 	rr.cleanup()

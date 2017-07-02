@@ -32,7 +32,7 @@ for x in xrange(10):
 	
 	if(backward):
 		print("Backward")
-		rr.set_mototrs(0.5, 1, 0.5, 1)
+		rr.set_motors(0.5, 1, 0.5, 1)
 		
 	sleep(1)
 	

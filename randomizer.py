@@ -2,7 +2,7 @@ from rrb3 import *
 from random import randint
 
 def getRange(rr):
-    sum = 0
+	sum = 0
 	for x in xrange(3):
 		sum = sum + rr.get_distance()
 	return sum / 3

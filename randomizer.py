@@ -17,6 +17,8 @@ try:
 	print("Go")
 	sleep(spintime)
 	print("Searching 4 Person")
+	rr.set_led1(1)
+	rr.set_led2(1)
 	range = getRange(rr)
 	while(range > 60):
 		print("range: " + str(range))
@@ -24,6 +26,8 @@ try:
 		sleep(0.1)
 
 	rr.set_motors(0, 0, 0, 0)
+	rr.set_led1(0)
+	rr.set_led2(0)
 	print("Stop") 
 	print("range: " + str(range))
 finally:

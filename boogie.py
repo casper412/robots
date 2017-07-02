@@ -17,24 +17,29 @@ for x in xrange(10):
 	if(left):
 		print("Left")
 		rr.set_motors(0.5, 1, 0.5, 0)
+		sleep(1)
 	
 	if(right): 
 		print("Right")
 		rr.set_motors(0.5, 0, 0.5, 1)
+		sleep(1)
 		
 	if(forward):
 		print("Forward")
 		rr.set_motors(0.5, 0, 0.5, 0)
+		sleep(1)
 	
 	if(forward):
 		print("Forward")
 		rr.set_motors(0.5, 0, 0.5, 0)
+		sleep(1)
 	
 	if(backward):
 		print("Backward")
 		rr.set_motors(0.5, 1, 0.5, 1)
+		sleep(1)
 		
-	sleep(1)
+	
 	
 rr.set_led1(0)
 rr.set_led2(0)

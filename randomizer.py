@@ -20,11 +20,11 @@ print("Searching 4 Person")
 
 try:
 	range = getRange(rr)
-	rr.set_motors(0.5, 1, 0.5, 0) # continue spinning left
+	rr.set_motors(0.5, 0, 0.5, 1) # continue spinning left
 	while(range > 60):
 		print("range: " + str(range))
 		range = getRange(rr)
-		sleep(0.5)
+		sleep(0.1)
 
 	rr.set_motors(0, 0, 0, 0)
 	print("Stop") 

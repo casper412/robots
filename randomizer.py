@@ -9,18 +9,15 @@ def getRange(rr):
 	return sum / 3
 
 spintime = randint(10, 20)
- 
 rr = RRB3(9,6)
 
-print("Go")
-
-rr.left(spintime,0.5)
-	
-print("Searching 4 Person")
-
 try:
-	range = getRange(rr)
 	rr.set_motors(0.5, 0, 0.5, 1) # continue spinning left
+	
+	print("Go")
+	sleep(spintime)
+	print("Searching 4 Person")
+	range = getRange(rr)
 	while(range > 60):
 		print("range: " + str(range))
 		range = getRange(rr)

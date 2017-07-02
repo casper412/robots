@@ -16,11 +16,11 @@ print("Go")
 
 rr.left(spintime,0.5)
 	
-print("Go")
+print("Searching 4 Person")
 
 try:
 	range = getRange(rr)
-	rr.set_motors(0, 0, 0.5, 0) # continue spinning left
+	rr.set_motors(0.5, 1, 0.5, 0) # continue spinning left
 	while(range > 60):
 		print("range: " + str(range))
 		range = getRange(rr)

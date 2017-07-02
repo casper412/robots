@@ -1,5 +1,6 @@
 from rrb3 import *
 from random import randint
+from time import sleep
 
 def getRange(rr):
 	sum = 0

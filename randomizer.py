@@ -7,7 +7,7 @@ rr = RRB3(9,6)
 
 print("Go")
 
-rr.left(0.5,spintime)
+rr.left(spintime,0.5)
 	
 print("Stop") 
 print("range: " + str(rr.get_distance()))

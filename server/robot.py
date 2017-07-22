@@ -39,7 +39,7 @@ class Robot:
             self.event = self.s.enter(self.DELAY, 1, self.stop, ())
             thread.start_new_thread(self.monitor, (("Thread-1",)))
         # Set robot motors here
-		rr.set_motors(left_motor_speed, left_motor_dir,  right_motor_speed, right_motor_dir)
+        rr.set_motors(left_motor_speed, left_motor_dir,  right_motor_speed, right_motor_dir)
 		
     def monitor(self, threadName):
         print "%s: %s" % (threadName, datetime.now().strftime(self.format))

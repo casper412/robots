@@ -29,7 +29,7 @@ class Robot:
     def stop(self):
         print "\tSTOP!!!"
         self.event = None
-		self.setMotors(0,0,0,0)
+        self.setMotors(0,0,0,0)
 
     def setMotors(self, left_motor_speed, left_motor_dir,  right_motor_speed, right_motor_dir):
         if (self.event != None):

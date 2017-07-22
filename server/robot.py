@@ -12,19 +12,19 @@ class Robot:
        
     def forward(self):
         print ("\t%s: %s" % (datetime.now().strftime(self.format), "forward"))
-        self.setMotors(0.5,0,0.5,0)
+        self.setMotors(1.0,0,1.0,0)
 
     def back(self):
         print ("\t%s: %s" % (datetime.now().strftime(self.format), "back"))
-        self.setMotors(0.5,1,0.5,1)
+        self.setMotors(1.0,1,1.0,1)
 
     def left(self):
         print ("\t%s: %s" % (datetime.now().strftime(self.format), "left"))
-        self.setMotors(0.5,1,0.5,0)
+        self.setMotors(1.0,1,1.0,0)
 
     def right(self):
         print ("\t%s: %s" % (datetime.now().strftime(self.format), "right"))
-        self.setMotors(0.5,0,0.5,1)
+        self.setMotors(1.0,0,1.0,1)
 
     def stop(self):
         print "\tSTOP!!!"

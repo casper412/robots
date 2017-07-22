@@ -29,11 +29,6 @@ for x in xrange(10):
 		rr.set_motors(0.5, 0, 0.5, 0)
 		sleep(1)
 	
-	if(forward):
-		print("Forward")
-		rr.set_motors(0.5, 0, 0.5, 0)
-		sleep(1)
-	
 	if(backward):
 		print("Backward")
 		rr.set_motors(0.5, 1, 0.5, 1)

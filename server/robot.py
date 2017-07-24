@@ -1,6 +1,6 @@
 import sched, time, thread
 from datetime import datetime
-#MJH from rrb3 import *
+from rrb3 import *
 
 class Robot:
     def __init__(self):
@@ -9,7 +9,7 @@ class Robot:
         self.event = None
         self.DELAY = 0.5
         self.format = "%a, %d %b %Y %H:%M:%S:%f +0000"
-        #MJH rr = RRB3(9,6)
+        rr = RRB3(9,6)
 
     def move(self, dx, dy):
         dy = -1 * dy # flip y coords
@@ -76,7 +76,7 @@ class Robot:
     def stop(self):
         print "\tSTOP!!!"
         self.event = None
-        #MJH rr.set_motors(0,0,0,0)
+        rr.set_motors(0,0,0,0)
 
     def setMotors(self, left_motor_speed, left_motor_dir,  right_motor_speed, right_motor_dir):
         print (left_motor_speed, left_motor_dir,  right_motor_speed, right_motor_dir)
@@ -86,7 +86,7 @@ class Robot:
         else:
             self.event = self.s.enter(self.DELAY, 1, self.stop, ())
             thread.start_new_thread(self.monitor, (("Thread-1",)))
-        #MJH rr.set_motors(left_motor_speed, left_motor_dir,  right_motor_speed, right_motor_dir)
+        rr.set_motors(left_motor_speed, left_motor_dir,  right_motor_speed, right_motor_dir)
 
     def monitor(self, threadName):
         print "%s: %s" % (threadName, datetime.now().strftime(self.format))

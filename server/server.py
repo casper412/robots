@@ -54,6 +54,7 @@ class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         action = pathPart[0:qmark]
         query = pathPart[qmark + 1:]
         params = dict(token.split('=') for token in query.split("&"))
+        print params
         dx = float(params["dx"])
         dy = float(params["dy"])
         return (action, dx, dy)

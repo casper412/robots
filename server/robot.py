@@ -31,10 +31,6 @@ class Robot:
 
         if (dy == 0):
             pass
-        elif (dy < 0):
-            left_motor += dyRatio * -1
-            right_motor += dyRatio * -1
-            count = count + abs(dyRatio)
         else:
             left_motor += dyRatio
             right_motor += dyRatio

@@ -63,26 +63,11 @@
 
 			setInterval(function(){
 			    var d = new Date();
-				if (joystick.up()) {
-				    $.get( "/action/forward", function( data ) {
 
-                    });
-				}
-				if (joystick.down()) {
-			    	$.get( "/action/back", function( data ) {
-
-                    });
-				}
-				if (joystick.left()) {
-				    $.get( "/action/left", function( data ) {
-
-                    });
-				}
-				if (joystick.right()) {
-                    $.get( "/action/right", function( data ) {
-
-                    });
-				}
+                $.get( "/action/move?dx="
+                    + joystick.deltaX()+"&dy="
+                    + joystick.deltaY(), function( data ) {
+                });
 
 				var outputEl	= document.getElementById('result');
 				outputEl.innerHTML	= '<b>Result:</b> '

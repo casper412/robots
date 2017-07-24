@@ -29,24 +29,35 @@ class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         # Serve files normally
         if (not self.path.startswith(prefix)):
             return SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
-        
-        action = self.path[len(prefix):]
-        
+
+        (action, dx, dy) = self.parse(self.path[len(prefix):])
+        print "Action: " + action
+        print "dx: %f / dy: %f" % (dx, dy)
         action_method = getattr(robot, action)
-        action_method()
-        
+        action_method(dx, dy)
+
         # Handle action requests
         self._set_headers()
         self.wfile.write("{{'action': '{0}'}}".format(action))
 
     def do_HEAD(self):
         self._set_headers()
-        
+
     def do_POST(self):
         # Doesn't do anything with posted data
         self._set_headers()
         self.wfile.write("<html><body><h1>POST!</h1></body></html>")
-        
+
+    def parse(self, pathPart):
+        qmark = pathPart.find("?")
+
+        action = pathPart[0:qmark]
+        query = pathPart[qmark + 1:]
+        params = dict(token.split('=') for token in query.split("&"))
+        dx = float(params["dx"])
+        dy = float(params["dy"])
+        return (action, dx, dy)
+
 def run(server_class=HTTPServer, handler_class=RobotHandler, port=80):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)

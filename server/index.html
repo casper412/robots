@@ -61,12 +61,14 @@
 				console.log('up')
 			})
 
+            range = 0;
 			setInterval(function(){
 			    var d = new Date();
 
                 $.get( "/action/move?dx="
-                    + joystick.deltaX()+"&dy="
-                    + joystick.deltaY(), function( data ) {
+                        + joystick.deltaX()+"&dy="
+                        + joystick.deltaY(), function( data ) {
+                    range = data.range;
                 });
 
 				var outputEl	= document.getElementById('result');
@@ -76,7 +78,9 @@
 					+ (joystick.right()	? ' right'	: '')
 					+ (joystick.up()	? ' up'		: '')
 					+ (joystick.left()	? ' left'	: '')
-					+ (joystick.down()	? ' down' 	: '') + d.toUTCString()
+					+ (joystick.down()	? ' down' 	: '')
+					+ " Range: " + range
+					+ d.toUTCString()
 			}, 1/30 * 1000);
 		</script>
 	</body>

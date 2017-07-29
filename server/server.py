@@ -34,11 +34,11 @@ class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         print "Action: " + action
         print "dx: %f / dy: %f" % (dx, dy)
         action_method = getattr(robot, action)
-        action_method(dx, dy)
+        range = action_method(dx, dy)
 
         # Handle action requests
         self._set_headers()
-        self.wfile.write("{{'action': '{0}'}}".format(action))
+        self.wfile.write("{{'action': '{0}', 'range': '{1}'}}".format(action, range))
 
     def do_HEAD(self):
         self._set_headers()

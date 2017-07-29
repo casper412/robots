@@ -69,11 +69,10 @@
                 $.get( "/action/move?dx="
                         + joystick.deltaX()+"&dy="
                         + joystick.deltaY(),
-                        '',
                         function( data ) {
                     range = data.range;
                     lastData = data;
-                }, 'json');
+                });
 
 				var outputEl	= document.getElementById('result');
 				outputEl.innerHTML	= '<b>Result:</b> '

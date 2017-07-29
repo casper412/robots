@@ -70,7 +70,7 @@
                         + joystick.deltaX()+"&dy="
                         + joystick.deltaY(),
                         function( data ) {
-                    range = data.range;
+                    range = JSON.parse(data).range;
                     lastData = data;
                 });
 

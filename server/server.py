@@ -38,7 +38,7 @@ class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
         # Handle action requests
         self._set_headers()
-        self.wfile.write("{{action: '{0}', range: '{1}'}}".format(action, range))
+        self.wfile.write("{{\"action\": \"{0}\", \"range\": \"{1}\"}}".format(action, range))
 
     def do_HEAD(self):
         self._set_headers()

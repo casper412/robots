@@ -62,6 +62,7 @@
 			})
 
             range = 0;
+            lastData = '';
 			setInterval(function(){
 			    var d = new Date();
 
@@ -69,6 +70,7 @@
                         + joystick.deltaX()+"&dy="
                         + joystick.deltaY(), function( data ) {
                     range = data.range;
+                    lastData = data
                 });
 
 				var outputEl	= document.getElementById('result');
@@ -80,6 +82,7 @@
 					+ (joystick.left()	? ' left'	: '')
 					+ (joystick.down()	? ' down' 	: '')
 					+ " Range: " + range
+					+ " Data: " + lastData
 					+ " Date: " + d.toUTCString()
 			}, 1/30 * 1000);
 		</script>

@@ -69,6 +69,7 @@
                 $.get( "/action/move?dx="
                         + joystick.deltaX()+"&dy="
                         + joystick.deltaY(),
+                        '',
                         function( data ) {
                     range = data.range;
                     lastData = data;

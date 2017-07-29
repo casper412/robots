@@ -68,10 +68,11 @@
 
                 $.get( "/action/move?dx="
                         + joystick.deltaX()+"&dy="
-                        + joystick.deltaY(), function( data ) {
+                        + joystick.deltaY(),
+                        function( data ) {
                     range = data.range;
-                    lastData = data
-                });
+                    lastData = data;
+                }, 'json');
 
 				var outputEl	= document.getElementById('result');
 				outputEl.innerHTML	= '<b>Result:</b> '

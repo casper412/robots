@@ -52,7 +52,7 @@ class Robot:
         right_motor = abs(right_motor)
 
         self.setMotors(left_motor, left_dir, right_motor, right_dir)
-        return rr.get_distance()
+        return self.rr.get_distance()
 
     def forward(self, dx, dy):
         print ("\t%s: %s" % (datetime.now().strftime(self.format), "forward"))

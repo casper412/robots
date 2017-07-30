@@ -33,6 +33,9 @@
 			-webkit-user-select	: none;
 			-moz-user-select	: none;
 		}
+		#result {
+		    font-size: 20pt
+		}
 		</style>
 	</head>
 	<body>
@@ -42,7 +45,9 @@
 			-
 			works with mouse too as debug
 			<br/>
-			<span id="result"></span>
+			<div id="result">
+
+			</div>
 		</div>
 		<script src="virtualjoystick.js"></script>
 		<script src="jquery.js"></script>
@@ -82,9 +87,9 @@
 					+ (joystick.up()	? ' up'		: '')
 					+ (joystick.left()	? ' left'	: '')
 					+ (joystick.down()	? ' down' 	: '')
-					+ " Range: " + range
-					+ " Data: " + lastData
-					+ " Date: " + d.toUTCString()
+					+ "<br><br> Range: " + range
+					+ "<br><br> Data: " + lastData
+					+ "<br><br> Date: " + d.toUTCString()
 			}, 1/10 * 1000);
 		</script>
 	</body>

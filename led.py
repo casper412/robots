@@ -6,6 +6,7 @@ GPIO.setup(11, GPIO.OUT) ## Setup GPIO Pin 11 to OUT
 
 
 for i in xrange(1, 20):
+    time.sleep(1)
     print "Turning on %d" % i
     GPIO.output(11,True) ## Turn on GPIO pin 11
     time.sleep(1)

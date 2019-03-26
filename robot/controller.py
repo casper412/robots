@@ -23,6 +23,9 @@ class Robot:
         self.DELAY = 0.5
         self.format = "%a, %d %b %Y %H:%M:%S:%f +0000"
     
+    def __enter__(self):
+        return self
+    
     def forward(self, duration, rate):
         self.set_motors(rate, FORWARD, rate, FORWARD)
         self.stop_in(duration)
@@ -74,7 +77,12 @@ class Robot:
 
     def set_tilt(self, angle):
         pass
-    
+    def cleanup(self):
+        pass
+        
+    def __exit__(self, type, value, traceback):
+        self.cleanup()
+
 class GUIRobot(Robot):
     def __init__(self):
         Robot.__init__(self)
@@ -97,15 +105,47 @@ class GUIRobot(Robot):
     def set_tilt(self, angle):
         pass
     
+    def cleanup(self):
+        print("Cleaning up")
+
 class PhysicalRobot(Robot):
     def __init__(self):
         import RPi.GPIO as GPIO ## Import GPIO library
         GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
-        GPIO.setup(11, GPIO.OUT) ## Setup GPIO Pin 11 to OUT
+        
+        self.PAN_SERVO_PIN = 17
+        self.TILT_SERVO_PIN = 17
+        self.LED1_PIN = 11
+        self.LED2_PIN = 11
+        GPIO.setup(self.LED1_PIN, GPIO.OUT) ## Setup GPIO Pin 11 to OUT
+        GPIO.setup(self.LED2_PIN, GPIO.OUT) ## Setup GPIO Pin 11 to OUT
+        GPIO.setup(self.PAN_SERVO_PIN, GPIO.OUT)
+        GPIO.setup(self.TILT_SERVO_PIN, GPIO.OUT)
+
+        self.panServo = GPIO.PWM(self.PAN_SERVO_PIN, 50) # GPIO 17 for PWM with 50Hz
+        self.tiltServo = GPIO.PWM(self.TILD_SERVO_PIN, 50) # GPIO 17 for PWM with 50Hz
+        self.panServo.start(2.5) # Initialization
+        self.tiltServo.start(2.5) # Initialization
 
     def set_led1(self, on):
-        GPIO.output(11, on) ## Turn on GPIO pin 11
+        GPIO.output(self.LED1_PIN, on) ## Turn on GPIO pin
     
     def set_led2(self, on):
-        GPIO.output(13, on) ## Turn on GPIO pin 11
+        GPIO.output(self.LED2_PIN, on) ## Turn on GPIO pin
     
+    def get_distance(self):
+        return 330
+
+    def set_pan(self, angle):
+        duty = self._compute_duty(angle)
+        self.panServo.ChangeDutyCycle(duty)
+
+    def set_tilt(self, angle):
+        duty = self._compute_duty(angle)
+        self.tiltServo.ChangeDutyCycle(duty)
+
+    def _compute_duty(self, angle):
+        return float(angle) / 10.0 + 2.5
+
+    def cleanup(self):
+        GPIO.cleanup()

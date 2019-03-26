@@ -1,16 +1,16 @@
-import RPi.GPIO as GPIO ## Import GPIO library
 import time
+from robot import controller
 
-GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
-GPIO.setup(11, GPIO.OUT) ## Setup GPIO Pin 11 to OUT
+factory = controller.RobotFactory()
+rb = factory.make_robot()
 
 
-for i in xrange(1, 20):
+for i in range(1, 20):
     time.sleep(1)
-    print "Turning on %d" % i
-    GPIO.output(11,True) ## Turn on GPIO pin 11
+    print("Turning on %d" % i)
+    rb.set_led1(True)
     time.sleep(1)
-    print "Turning off %d" % i
-    GPIO.output(11,False) ## Turn off GPIO pin 11
+    print("Turning off %d" % i)
+    rb.set_led1(False)
 
 

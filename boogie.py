@@ -1,14 +1,15 @@
-from rrb3 import *
+import time
 from random import randint
-from time import sleep
+from robot import controller
 
-rr = RRB3(9,6)
+factory = controller.RobotFactory()
+rb = factory.make_robot()
 
 print("Boogie Time")
-rr.set_led1(1)
-rr.set_led2(1)
+rb.set_led1(1)
+rb.set_led2(1)
 
-for x in xrange(10):
+for x in range(10):
 	left = randint(0,1)
 	right = randint(0,1)
 	forward = randint(0,1)
@@ -16,27 +17,27 @@ for x in xrange(10):
 
 	if(left):
 		print("Left")
-		rr.set_motors(0.5, 1, 0.5, 0)
-		sleep(1)
+		rb.set_motors(0.5, 1, 0.5, 0)
+		time.sleep(1)
 	
 	if(right): 
 		print("Right")
-		rr.set_motors(0.5, 0, 0.5, 1)
-		sleep(1)
+		rb.set_motors(0.5, 0, 0.5, 1)
+		time.sleep(1)
 		
 	if(forward):
 		print("Forward")
-		rr.set_motors(0.5, 0, 0.5, 0)
-		sleep(1)
+		rb.set_motors(0.5, 0, 0.5, 0)
+		time.sleep(1)
 	
 	if(backward):
 		print("Backward")
-		rr.set_motors(0.5, 1, 0.5, 1)
-		sleep(1)
+		rb.set_motors(0.5, 1, 0.5, 1)
+		time.sleep(1)
 		
 	
 	
-rr.set_led1(0)
-rr.set_led2(0)
+rb.set_led1(0)
+rb.set_led2(0)
 print("End of Boogie Time")
 

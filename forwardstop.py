@@ -1,11 +1,13 @@
-from rrb3 import *
+import time
+from robot import controller
 
-rr = RRB3(9,6)
+factory = controller.RobotFactory()
+rb = factory.make_robot()
 
 print("Go")
-while(rr.get_distance() == None or rr.get_distance() > 30):
-	print("range: " + str(rr.get_distance()))
-	rr.forward(0.5,1)
+while(rb.get_distance() == None or rb.get_distance() > 30):
+	print("range: " + str(rb.get_distance()))
+	rb.forward(0.5,1)
 	
 print("Stop") 
-print("range: " + str(rr.get_distance()))
+print("range: " + str(rb.get_distance()))

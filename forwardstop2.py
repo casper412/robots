@@ -1,26 +1,25 @@
-from rrb3 import *
-from time import sleep
-rr = RRB3(9,6)
+
+import time
+from robot import controller
+
+factory = controller.RobotFactory()
+rb = factory.make_robot()
+
+def get_range(rb):
+    sum = 0
+    for x in range(3):
+        sum = sum + rb.get_distance()
+    return sum / 3
 
 print("Go")
 
-try:
-	
-	range = getRange(rr)
-	rr.set_motors(1, 0, 1, 0) # both motors to full speed
-	while(range > 30):
-		print("range: " + str(range))
-		range = getRange(rr)
-		sleep(0.5)
-	
-	rr.set_motors(0, 0, 0, 0)
-	print("Stop") 
-	print("range: " + str(range))
-finally:
-	rr.cleanup()
-	
-def getRange(rr):
-    sum = 0
-	for x in xrange(3):
-		sum = sum + rr.get_distance()
-	return sum / 3
+dist = get_range(rb)
+rb.set_motors(1, 0, 1, 0) # both motors to full speed
+while(dist > 30):
+	print("range: " + str(dist))
+	dist = get_range(rb)
+	time.sleep(0.5)
+
+rb.set_motors(0, 0, 0, 0)
+print("Stop") 
+print("range: " + str(range))

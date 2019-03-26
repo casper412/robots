@@ -1,12 +1,13 @@
-from rrb3 import *
+import time
+from robot import controller
 
-rr = RRB3(9,6)
+factory = controller.RobotFactory()
+rb = factory.make_robot()
+rb.set_led1(True)
 
+rb.forward(5, 1)
+rb.left(5, 1)
+rb.right(5, 1)
+rb.reverse(5, 1)
 
-rr.forward(5, 1)
-
-rr.left(5, 1)
-
-rr.right(5, 1)
-
-rr.reverse(5, 1)
+time.sleep(5)

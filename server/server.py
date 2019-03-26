@@ -10,15 +10,16 @@ Send a HEAD request::
 Send a POST request::
     curl -d "foo=bar&bin=baz" http://localhost
 """
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-import SocketServer
-import SimpleHTTPServer
-import robot
+import http.server
+import socketserver
+import os
+
+import robot_http
 
 
-robot = robot.Robot()
+robot = robot_http.RobotHttp()
 
-class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+class RobotHandler(http.server.SimpleHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
         self.send_header('Content-type', 'application/javascript')
@@ -28,17 +29,17 @@ class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         prefix = "/action/"
         # Serve files normally
         if (not self.path.startswith(prefix)):
-            return SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+            return http.server.SimpleHTTPRequestHandler.do_GET(self)
 
         (action, dx, dy) = self.parse(self.path[len(prefix):])
-        print "Action: " + action
-        print "dx: %f / dy: %f" % (dx, dy)
+        print("Action: " + action)
+        print("dx: %f / dy: %f" % (dx, dy))
         action_method = getattr(robot, action)
-        range = action_method(dx, dy)
+        dist = action_method(dx, dy)
 
         # Handle action requests
         self._set_headers()
-        self.wfile.write("{{\"action\": \"{0}\", \"range\": \"{1}\"}}".format(action, range))
+        self.wfile.write("{{\"action\": \"{0}\", \"range\": \"{1}\"}}".format(action, dist).encode('utf-8'))
 
     def do_HEAD(self):
         self._set_headers()
@@ -46,7 +47,7 @@ class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_POST(self):
         # Doesn't do anything with posted data
         self._set_headers()
-        self.wfile.write("<html><body><h1>POST!</h1></body></html>")
+        self.wfile.write("<html><body><h1>POST!</h1></body></html>".encode('utf-8'))
 
     def parse(self, pathPart):
         qmark = pathPart.find("?")
@@ -54,20 +55,20 @@ class RobotHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         action = pathPart[0:qmark]
         query = pathPart[qmark + 1:]
         params = dict(token.split('=') for token in query.split("&"))
-        print params
+        print(params)
         dx = float(params["dx"])
         dy = float(params["dy"])
         return (action, dx, dy)
 
-def run(server_class=HTTPServer, handler_class=RobotHandler, port=80):
-    server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
-    print 'Starting httpd...'
-    httpd.serve_forever()
+def run(handler_class=RobotHandler, port=80):
+    print('Starting httpd...')
+    with socketserver.TCPServer(("", port), RobotHandler) as httpd:
+        print("serving at port", port)
+        httpd.serve_forever()
 
 if __name__ == "__main__":
     from sys import argv
-
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     if len(argv) == 2:
         run(port=int(argv[1]))
     else:

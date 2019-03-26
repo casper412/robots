@@ -45,14 +45,14 @@ class Robot:
             self.event = self.s.enter(duration, 1, self.stop, ())
         else:
             self.event = self.s.enter(duration, 1, self.stop, ())
-            _thread.start_new_thread(self.monitor, (("StopThread",)))
+            _thread.start_new_thread(self._monitor, (("StopThread",)))
 
     def stop(self):
         print("Delayed STOP!!!")
         self.event = None
         self.set_motors(0., FORWARD, 0., FORWARD)
 
-    def monitor(self, threadName):
+    def _monitor(self, threadName):
         print("%s: %s" % (threadName, datetime.now().strftime(self.format)))
         self.s.run()
         print("%s: %s" % (threadName, datetime.now().strftime(self.format)))

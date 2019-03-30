@@ -11,6 +11,7 @@ class RobotHttp:
         factory = controller.RobotFactory()
         self.rb = factory.make_robot()
         self.DELAY = 0.5
+        self.rb.set_tilt(180)
 
     def move(self, dx, dy):
         dy = -1 * dy # flip y coords

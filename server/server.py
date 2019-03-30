@@ -19,6 +19,7 @@ import robot_http
 
 robot = robot_http.RobotHttp()
 
+
 class RobotHandler(http.server.SimpleHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
@@ -62,9 +63,9 @@ class RobotHandler(http.server.SimpleHTTPRequestHandler):
 
 def run(handler_class=RobotHandler, port=80):
     print('Starting httpd...')
-    with socketserver.TCPServer(("", port), RobotHandler) as httpd:
-        print("serving at port", port)
-        httpd.serve_forever()
+    httpd = socketserver.TCPServer(("", port), RobotHandler)
+    print("serving at port", port)
+    httpd.serve_forever()
 
 if __name__ == "__main__":
     from sys import argv

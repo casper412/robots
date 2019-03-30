@@ -42,9 +42,6 @@
 		<div id="container"></div>
 		<div id="info">
 			Touch the screen and move
-			-
-			works with mouse too as debug
-			<br/>
 			<div id="result">
 
 			</div>
@@ -87,9 +84,9 @@
 					+ (joystick.up()	? ' up'		: '')
 					+ (joystick.left()	? ' left'	: '')
 					+ (joystick.down()	? ' down' 	: '')
-					+ "<br><br> Range: " + range
-					+ "<br><br> Data: " + lastData
-					+ "<br><br> Date: " + d.toUTCString()
+					+ "<br> Range: " + range
+					+ "<br> Data: " + lastData
+					+ " Date: " + d.toUTCString()
 			}, 1/10 * 1000);
 		</script>
 	</body>

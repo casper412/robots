@@ -32,4 +32,3 @@ rb.set_led2(0)
 print("Stop") 
 print("range: " + str(dist))
 
-	
